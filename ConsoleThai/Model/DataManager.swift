@@ -26,8 +26,8 @@ class DataManager {
         let urlForum = "https://www.consolethai.com/api/forums/"
         let urlThread =  "https://www.consolethai.com/api/posts/"
     
-        func downloadForumJSON(device:String){
-            let finalUrl = "\(urlForum)\(device)"
+        func downloadForumJSON(device:String,page: Int){
+            let finalUrl = "\(urlForum)\(device)?page=\(page)"
             if let url = URL(string: finalUrl){
                 var request = URLRequest(url: url)
                 request.setValue("D06DPe9piI0syIxUMnleZijaKrphWPNx",

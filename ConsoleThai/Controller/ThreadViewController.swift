@@ -28,6 +28,7 @@ class ThreadViewController: UIViewController, PostManagerDelegate {
         dataManager.downloadPostJSON(number: postID!)
         attachmentCV.delegate = self
         attachmentCV.dataSource = self
+        
     }
     
     func didGetPostData(dataManager: DataManager, post: PostData) {
@@ -64,6 +65,7 @@ extension ThreadViewController : UICollectionViewDelegate, UICollectionViewDataS
             let thumbURL = URL(string: attachments[indexPath.row].thumbnailUrl)!
             cell.attachmentImage.load(url: thumbURL)
         }
+        cell.layer.cornerRadius = 10
         return cell
     }
 

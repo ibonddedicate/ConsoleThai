@@ -11,11 +11,13 @@ import UIKit
 class PSViewController: UIViewController {
     
     @IBOutlet weak var threadTable: UITableView!
+    @IBOutlet weak var deviceBar: UITabBarItem!
     
     var dataManager = DataManager()
     var localThread = [Thread]()
     var postIDPressed:Int?
     var threadTitle:String?
+    var currentPage = 1
 
     let threadRefresh: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -29,15 +31,15 @@ class PSViewController: UIViewController {
         // Do any additional setup after loading the view.
         dataManager.threadDelegate = self
         threadTable.dataSource = self
-        dataManager.downloadForumJSON(device: "5/threads")
+        dataManager.downloadForumJSON(device: Devices(rawValue: deviceBar.tag)!.device ,page: currentPage)
         threadTable.refreshControl = threadRefresh
         threadTable.backgroundColor = .clear
-        
         view.setGradientBG(colorOne: Colors.darkblue, colorTwo: Colors.blue)
         
         }
+    
     @objc func refresh(sender: UIRefreshControl){
-        dataManager.downloadForumJSON(device: "4/threads")
+        dataManager.downloadForumJSON(device: Devices(rawValue: deviceBar.tag)!.device, page: currentPage)
         sender.endRefreshing()
     }
 }
@@ -95,5 +97,5 @@ extension PSViewController: ThreadsManagerDelegate {
         print(error)
     }
     
-    
+
 }

@@ -38,3 +38,19 @@ enum Prefix {
         }
     }
 }
+enum Devices:Int {
+    case ps4 = 1
+    case ns = 2
+    case xb = 3
+    
+    var device: String {
+        switch self{
+        case .ps4:
+            return "5/threads"
+        case .ns:
+            return "37/threads"
+        case .xb:
+            return "32/threads"
+        }
+    }
+}

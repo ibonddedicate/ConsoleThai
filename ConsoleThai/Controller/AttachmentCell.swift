@@ -12,4 +12,5 @@ class AttachmentCell: UICollectionViewCell {
     
     @IBOutlet weak var attachmentImage: UIImageView!
     
+    
 }

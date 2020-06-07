@@ -7,16 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7522A9B3248AC80300CA6C6C /* XBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7522A9B2248AC80300CA6C6C /* XBViewController.swift */; };
 		752D19B4248C8F2700BA00E4 /* ThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752D19B3248C8F2700BA00E4 /* ThreadViewController.swift */; };
 		752D19B6248D746C00BA00E4 /* AttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752D19B5248D746C00BA00E4 /* AttachmentCell.swift */; };
 		7544357B2475916E0076C815 /* ThreadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7544357A2475916E0076C815 /* ThreadData.swift */; };
 		7550B367248A84F90025E3F4 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7550B366248A84F90025E3F4 /* ThreadCell.swift */; };
-		7550B369248AAC8A0025E3F4 /* PrefixStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7550B368248AAC8A0025E3F4 /* PrefixStatus.swift */; };
+		7550B369248AAC8A0025E3F4 /* Enumerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7550B368248AAC8A0025E3F4 /* Enumerators.swift */; };
 		75901BE82474294900D4630A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75901BE72474294900D4630A /* AppDelegate.swift */; };
 		75901BEA2474294900D4630A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75901BE92474294900D4630A /* SceneDelegate.swift */; };
 		75901BEC2474294900D4630A /* PSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75901BEB2474294900D4630A /* PSViewController.swift */; };
-		75901BEE2474294900D4630A /* NSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75901BED2474294900D4630A /* NSViewController.swift */; };
 		75901BF12474294900D4630A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75901BEF2474294900D4630A /* Main.storyboard */; };
 		75901BF32474294D00D4630A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75901BF22474294D00D4630A /* Assets.xcassets */; };
 		75901BF62474294D00D4630A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75901BF42474294D00D4630A /* LaunchScreen.storyboard */; };
@@ -25,17 +23,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7522A9B2248AC80300CA6C6C /* XBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XBViewController.swift; sourceTree = "<group>"; };
 		752D19B3248C8F2700BA00E4 /* ThreadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadViewController.swift; sourceTree = "<group>"; };
 		752D19B5248D746C00BA00E4 /* AttachmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCell.swift; sourceTree = "<group>"; };
 		7544357A2475916E0076C815 /* ThreadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadData.swift; sourceTree = "<group>"; };
 		7550B366248A84F90025E3F4 /* ThreadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
-		7550B368248AAC8A0025E3F4 /* PrefixStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefixStatus.swift; sourceTree = "<group>"; };
+		7550B368248AAC8A0025E3F4 /* Enumerators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumerators.swift; sourceTree = "<group>"; };
 		75901BE42474294900D4630A /* ConsoleThai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConsoleThai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75901BE72474294900D4630A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75901BE92474294900D4630A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		75901BEB2474294900D4630A /* PSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSViewController.swift; sourceTree = "<group>"; };
-		75901BED2474294900D4630A /* NSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewController.swift; sourceTree = "<group>"; };
 		75901BF02474294900D4630A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		75901BF22474294D00D4630A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75901BF52474294D00D4630A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -91,8 +87,6 @@
 			isa = PBXGroup;
 			children = (
 				75901BEB2474294900D4630A /* PSViewController.swift */,
-				75901BED2474294900D4630A /* NSViewController.swift */,
-				7522A9B2248AC80300CA6C6C /* XBViewController.swift */,
 				752D19B3248C8F2700BA00E4 /* ThreadViewController.swift */,
 				7550B366248A84F90025E3F4 /* ThreadCell.swift */,
 				752D19B5248D746C00BA00E4 /* AttachmentCell.swift */,
@@ -105,7 +99,7 @@
 			children = (
 				75901C002474338600D4630A /* DataManager.swift */,
 				7544357A2475916E0076C815 /* ThreadData.swift */,
-				7550B368248AAC8A0025E3F4 /* PrefixStatus.swift */,
+				7550B368248AAC8A0025E3F4 /* Enumerators.swift */,
 				75A49848248B3F5F007C476F /* GradientAndColors.swift */,
 			);
 			path = Model;
@@ -198,11 +192,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				752D19B6248D746C00BA00E4 /* AttachmentCell.swift in Sources */,
-				75901BEE2474294900D4630A /* NSViewController.swift in Sources */,
-				7522A9B3248AC80300CA6C6C /* XBViewController.swift in Sources */,
 				7544357B2475916E0076C815 /* ThreadData.swift in Sources */,
 				7550B367248A84F90025E3F4 /* ThreadCell.swift in Sources */,
-				7550B369248AAC8A0025E3F4 /* PrefixStatus.swift in Sources */,
+				7550B369248AAC8A0025E3F4 /* Enumerators.swift in Sources */,
 				75A49849248B3F5F007C476F /* GradientAndColors.swift in Sources */,
 				75901C012474338600D4630A /* DataManager.swift in Sources */,
 				75901BEC2474294900D4630A /* PSViewController.swift in Sources */,
