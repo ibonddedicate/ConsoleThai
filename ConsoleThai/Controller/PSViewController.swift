@@ -15,6 +15,7 @@ class PSViewController: UIViewController {
     var dataManager = DataManager()
     var localThread = [Thread]()
     var postIDPressed:Int?
+    var threadTitle:String?
 
     let threadRefresh: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -70,6 +71,7 @@ extension PSViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         postIDPressed = localThread[indexPath.row].firstPostID
+        threadTitle = localThread[indexPath.row].title
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "BringUpThread", sender: self)
     }
@@ -78,6 +80,7 @@ extension PSViewController: UITableViewDataSource, UITableViewDelegate {
         if let destination = segue.destination as? ThreadViewController {
             //passing data to threadviewcontroller
             destination.postID = postIDPressed
+            destination.TitleOfThread = threadTitle
         }
     }
 }

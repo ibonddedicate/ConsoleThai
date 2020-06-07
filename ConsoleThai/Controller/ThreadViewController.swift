@@ -11,10 +11,13 @@ import UIKit
 class ThreadViewController: UIViewController, PostManagerDelegate {
     
     @IBOutlet weak var message: UILabel!
+    @IBOutlet weak var threadTitle: UILabel!
+    @IBOutlet weak var attachmentCV: UICollectionView!
     //IBOutlets
     var dataManager = DataManager()
     var localPost: PostInfo?
     var postID:Int?
+    var TitleOfThread:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,20 +30,25 @@ class ThreadViewController: UIViewController, PostManagerDelegate {
     func didGetPostData(dataManager: DataManager, post: PostData) {
         DispatchQueue.main.async {
             self.message.text = post.post.message
+            self.threadTitle.text = self.TitleOfThread
         }
     }
     
     func didFail(error: Error) {
         print(error)
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+}
+
+extension ThreadViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
     }
-    */
-
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+    
+    
 }
