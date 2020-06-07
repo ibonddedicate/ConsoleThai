@@ -49,7 +49,6 @@ extension PSViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "threadCell") as! ThreadCell
-        //cell?. = localThread[indexPath.row].title
         cell.threadName.text = localThread[indexPath.row].title
         cell.threadUsername.text = localThread[indexPath.row].username
         if localThread[indexPath.row].isWatching {
@@ -80,7 +79,7 @@ extension PSViewController: UITableViewDataSource, UITableViewDelegate {
         if let destination = segue.destination as? ThreadViewController {
             //passing data to threadviewcontroller
             destination.postID = postIDPressed
-            destination.TitleOfThread = threadTitle
+            destination.titleOfThread = threadTitle
         }
     }
 }
