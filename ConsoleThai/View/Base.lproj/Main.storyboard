@@ -18,7 +18,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="LN4-CW-uOF">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="threadCell" rowHeight="100" id="RKQ-jQ-wYX" customClass="ThreadCell" customModule="ConsoleThai" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="threadCell" rowHeight="100" id="RKQ-jQ-wYX" customClass="ThreadCell" customModule="ConsoleThai" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.5" width="374" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RKQ-jQ-wYX" id="AkV-oJ-3IJ">
@@ -120,6 +120,9 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
+                                <connections>
+                                    <outlet property="delegate" destination="9pv-A4-QxB" id="jGh-3V-xSM"/>
+                                </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKg-0b-pmU">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -143,11 +146,12 @@
                     <tabBarItem key="tabBarItem" title="Playstation4" image="ps" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="threadTable" destination="LN4-CW-uOF" id="F3j-so-siJ"/>
+                        <segue destination="yQ6-kz-lhr" kind="show" identifier="BringUpThread" id="CeV-lb-YxI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="308.69565217391306" y="-104.46428571428571"/>
+            <point key="canvasLocation" x="272" y="-151"/>
         </scene>
         <!--NIntendoSwitch-->
         <scene sceneID="wg7-f3-ORb">
@@ -160,7 +164,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="KyT-c6-8ma">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="threadCell" rowHeight="100" id="oTs-Xr-1yr" customClass="ThreadCell" customModule="ConsoleThai" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="threadCell" rowHeight="100" id="oTs-Xr-1yr" customClass="ThreadCell" customModule="ConsoleThai" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.5" width="374" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oTs-Xr-1yr" id="OCy-m6-55b">
@@ -262,6 +266,9 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
+                                <connections>
+                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="gKQ-mZ-ZC2"/>
+                                </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLJ-M0-POW">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -285,11 +292,45 @@
                     <tabBarItem key="tabBarItem" title="NIntendoSwitch" image="ns" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="threadTable" destination="KyT-c6-8ma" id="oQx-eF-N4r"/>
+                        <segue destination="yQ6-kz-lhr" kind="show" identifier="BringUpThread" id="AAA-mx-4tC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1037.68115942029" y="332.8125"/>
+        </scene>
+        <!--Thread View Controller-->
+        <scene sceneID="cOG-aH-OmT">
+            <objects>
+                <viewController id="yQ6-kz-lhr" customClass="ThreadViewController" customModule="ConsoleThai" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sl6-3L-olL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lth-hH-tC4">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Lth-hH-tC4" firstAttribute="top" secondItem="bzb-gj-uTd" secondAttribute="top" id="Kif-Mf-aN2"/>
+                            <constraint firstItem="Lth-hH-tC4" firstAttribute="leading" secondItem="bzb-gj-uTd" secondAttribute="leading" id="eRk-pl-z9A"/>
+                            <constraint firstItem="bzb-gj-uTd" firstAttribute="bottom" secondItem="Lth-hH-tC4" secondAttribute="bottom" id="k9r-Vy-cAJ"/>
+                            <constraint firstItem="bzb-gj-uTd" firstAttribute="trailing" secondItem="Lth-hH-tC4" secondAttribute="trailing" id="wDI-iw-NUu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bzb-gj-uTd"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="S2C-yE-hZ0"/>
+                    <connections>
+                        <outlet property="message" destination="Lth-hH-tC4" id="Pol-X6-AzJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bfz-er-IoO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2671" y="305"/>
         </scene>
         <!--XboxOne-->
         <scene sceneID="pJZ-Yj-rf6">
@@ -302,7 +343,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="k0L-S1-BiV">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="threadCell" rowHeight="100" id="ffK-tR-nps" customClass="ThreadCell" customModule="ConsoleThai" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="threadCell" rowHeight="100" id="ffK-tR-nps" customClass="ThreadCell" customModule="ConsoleThai" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.5" width="374" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ffK-tR-nps" id="mrx-st-7RG">
@@ -404,6 +445,9 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
+                                <connections>
+                                    <outlet property="delegate" destination="F31-Wh-AY6" id="sp3-4y-Ccn"/>
+                                </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySs-eg-KEb">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -428,6 +472,7 @@
                     <connections>
                         <outlet property="threadTable" destination="k0L-S1-BiV" id="Qcn-FT-eUb"/>
                         <outlet property="titleBar" destination="ySs-eg-KEb" id="HZK-6X-cAu"/>
+                        <segue destination="yQ6-kz-lhr" kind="show" identifier="BringUpThread" id="Bvm-jV-725"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FGg-d0-mn6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -454,6 +499,9 @@
             <point key="canvasLocation" x="-494" y="387"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Bvm-jV-725"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="ns" width="33.333332061767578" height="33.333332061767578"/>
         <image name="offline" width="10" height="10"/>

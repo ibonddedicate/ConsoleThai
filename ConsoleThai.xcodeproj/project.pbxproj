@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7522A9B3248AC80300CA6C6C /* XBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7522A9B2248AC80300CA6C6C /* XBViewController.swift */; };
+		752D19B4248C8F2700BA00E4 /* ThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752D19B3248C8F2700BA00E4 /* ThreadViewController.swift */; };
 		7544357B2475916E0076C815 /* ThreadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7544357A2475916E0076C815 /* ThreadData.swift */; };
 		7550B367248A84F90025E3F4 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7550B366248A84F90025E3F4 /* ThreadCell.swift */; };
 		7550B369248AAC8A0025E3F4 /* PrefixStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7550B368248AAC8A0025E3F4 /* PrefixStatus.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		7522A9B2248AC80300CA6C6C /* XBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XBViewController.swift; sourceTree = "<group>"; };
+		752D19B3248C8F2700BA00E4 /* ThreadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadViewController.swift; sourceTree = "<group>"; };
 		7544357A2475916E0076C815 /* ThreadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadData.swift; sourceTree = "<group>"; };
 		7550B366248A84F90025E3F4 /* ThreadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
 		7550B368248AAC8A0025E3F4 /* PrefixStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefixStatus.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				75901BED2474294900D4630A /* NSViewController.swift */,
 				7522A9B2248AC80300CA6C6C /* XBViewController.swift */,
 				7550B366248A84F90025E3F4 /* ThreadCell.swift */,
+				752D19B3248C8F2700BA00E4 /* ThreadViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				75A49849248B3F5F007C476F /* GradientAndColors.swift in Sources */,
 				75901C012474338600D4630A /* DataManager.swift in Sources */,
 				75901BEC2474294900D4630A /* PSViewController.swift in Sources */,
+				752D19B4248C8F2700BA00E4 /* ThreadViewController.swift in Sources */,
 				75901BE82474294900D4630A /* AppDelegate.swift in Sources */,
 				75901BEA2474294900D4630A /* SceneDelegate.swift in Sources */,
 			);

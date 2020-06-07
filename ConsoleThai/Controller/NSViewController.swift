@@ -14,6 +14,7 @@ class NSViewController: UIViewController {
     
         var dataManager = DataManager()
         var localThread = [Thread]()
+        var postIDPressed:Int?
         
         let threadRefresh: UIRefreshControl = {
             let refreshControl = UIRefreshControl()
@@ -25,9 +26,9 @@ class NSViewController: UIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             // Do any additional setup after loading the view.
-            dataManager.delegate = self
+            dataManager.threadDelegate = self
             threadTable.dataSource = self
-            dataManager.downloadThreadJSON(device: "38/threads")
+            dataManager.downloadForumJSON(device: "37/threads")
             threadTable.refreshControl = threadRefresh
             threadTable.backgroundColor = .clear
             
@@ -35,12 +36,12 @@ class NSViewController: UIViewController {
             
             }
         @objc func refresh(sender: UIRefreshControl){
-            dataManager.downloadThreadJSON(device: "38/threads")
+            dataManager.downloadForumJSON(device: "37/threads")
             sender.endRefreshing()
         }
     }
 
-    extension NSViewController: UITableViewDataSource {
+    extension NSViewController: UITableViewDataSource, UITableViewDelegate {
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return localThread.count
         }
@@ -66,9 +67,22 @@ class NSViewController: UIViewController {
             cell.viewNumber.text = String(localThread[indexPath.row].viewCount)
             return cell
         }
+        
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            postIDPressed = localThread[indexPath.row].firstPostID
+            tableView.deselectRow(at: indexPath, animated: true)
+            performSegue(withIdentifier: "BringUpThread", sender: self)
+        }
+        
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if let destination = segue.destination as? ThreadViewController {
+                //passing data to threadviewcontroller
+                destination.postID = postIDPressed
+            }
+        }
 
     }
-    extension NSViewController: DataManagerDelegate {
+    extension NSViewController: ThreadsManagerDelegate {
         func didGetThreadData(dataManager: DataManager, thread: ThreadData) {
             localThread = thread.threads
             DispatchQueue.main.async {

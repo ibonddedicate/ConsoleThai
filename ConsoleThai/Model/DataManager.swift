@@ -8,19 +8,26 @@
 
 import Foundation
 
-protocol DataManagerDelegate {
+protocol ThreadsManagerDelegate {
     func didGetThreadData(dataManager: DataManager, thread: ThreadData)
+    func didFail(error: Error)
+}
+
+protocol PostManagerDelegate {
+    func didGetPostData(dataManager: DataManager, post: PostData)
     func didFail(error: Error)
 }
 
 class DataManager {
     
-    var delegate:DataManagerDelegate?
+    var threadDelegate: ThreadsManagerDelegate?
+    var postDelegate: PostManagerDelegate?
     
-        let url = "https://www.consolethai.com/api/forums/"
-        
-        func downloadThreadJSON(device:String){
-            let finalUrl = "\(url)\(device)"
+        let urlForum = "https://www.consolethai.com/api/forums/"
+        let urlThread =  "https://www.consolethai.com/api/posts/"
+    
+        func downloadForumJSON(device:String){
+            let finalUrl = "\(urlForum)\(device)"
             if let url = URL(string: finalUrl){
                 var request = URLRequest(url: url)
                 request.setValue("D06DPe9piI0syIxUMnleZijaKrphWPNx",
@@ -28,19 +35,44 @@ class DataManager {
                 let session = URLSession(configuration: .default)
                 let task = session.dataTask(with: request) { (data, response, error) in
                     if error != nil {
-                        self.delegate?.didFail(error: error!)
+                        self.threadDelegate?.didFail(error: error!)
                         return
                     }
-                    print("Thread Downloaded")
+                    print("Threads List Downloaded")
                     do  {
                         let decoder = JSONDecoder()
                         let decodedThread = try decoder.decode(ThreadData.self, from: data!)
-                        self.delegate?.didGetThreadData(dataManager: self, thread: decodedThread)
+                        self.threadDelegate?.didGetThreadData(dataManager: self, thread: decodedThread)
                     } catch {
-                        self.delegate?.didFail(error: error)
+                        self.threadDelegate?.didFail(error: error)
                     }
                 }
                 task.resume()
+        }
+    }
+    
+    func downloadPostJSON(number:Int){
+        let finalUrl = "\(urlThread)\(number)"
+        if let url = URL(string: finalUrl){
+            var request = URLRequest(url: url)
+            request.setValue("D06DPe9piI0syIxUMnleZijaKrphWPNx",
+                             forHTTPHeaderField: "XF-Api-Key")
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: request) { (data, response, error) in
+                if error != nil {
+                    self.postDelegate?.didFail(error: error!)
+                    return
+                }
+                print("Post Info Downloaded")
+                do {
+                    let decoder = JSONDecoder()
+                    let decodedPost = try decoder.decode(PostData.self, from: data!)
+                    self.postDelegate?.didGetPostData(dataManager: self, post: decodedPost)
+                } catch {
+                    self.postDelegate?.didFail(error: error)
+                }
+            }
+            task.resume()
         }
     }
         
