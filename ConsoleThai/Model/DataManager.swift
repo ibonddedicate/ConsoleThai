@@ -18,20 +18,22 @@ protocol PostManagerDelegate {
     func didFail(error: Error)
 }
 
+
 class DataManager {
     
     var threadDelegate: ThreadsManagerDelegate?
     var postDelegate: PostManagerDelegate?
+    let apiKey = "D06DPe9piI0syIxUMnleZijaKrphWPNx"
     
-        let urlForum = "https://www.consolethai.com/api/forums/"
-        let urlThread =  "https://www.consolethai.com/api/posts/"
+    let urlForum = "https://www.consolethai.com/api/forums/"
+    let urlThread =  "https://www.consolethai.com/api/posts/"
+    
     
         func downloadForumJSON(device:String,page: Int){
             let finalUrl = "\(urlForum)\(device)?page=\(page)"
             if let url = URL(string: finalUrl){
                 var request = URLRequest(url: url)
-                request.setValue("D06DPe9piI0syIxUMnleZijaKrphWPNx",
-                                 forHTTPHeaderField: "XF-Api-Key")
+                request.setValue(apiKey,forHTTPHeaderField: "XF-Api-Key")
                 let session = URLSession(configuration: .default)
                 let task = session.dataTask(with: request) { (data, response, error) in
                     if error != nil {
@@ -55,8 +57,7 @@ class DataManager {
         let finalUrl = "\(urlThread)\(number)"
         if let url = URL(string: finalUrl){
             var request = URLRequest(url: url)
-            request.setValue("D06DPe9piI0syIxUMnleZijaKrphWPNx",
-                             forHTTPHeaderField: "XF-Api-Key")
+            request.setValue(apiKey,forHTTPHeaderField: "XF-Api-Key")
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: request) { (data, response, error) in
                 if error != nil {
@@ -75,6 +76,5 @@ class DataManager {
             task.resume()
         }
     }
-        
 }
 

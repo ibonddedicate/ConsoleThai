@@ -16,7 +16,7 @@ struct Thread: Codable {
     let title: String
     let prefixID: Int
     let username: String
-    let isWatching: Bool
+    let userID: Int
     let viewCount: Int
     let firstPostID: Int
     
@@ -25,7 +25,7 @@ struct Thread: Codable {
         case title
         case prefixID = "prefix_id"
         case username
-        case isWatching = "is_watching"
+        case userID = "user_id"
         case viewCount = "view_count"
         case firstPostID = "first_post_id"
     }

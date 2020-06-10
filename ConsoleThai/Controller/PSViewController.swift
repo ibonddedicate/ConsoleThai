@@ -8,10 +8,11 @@
 
 import UIKit
 
-class PSViewController: UIViewController {
+class PSViewController: UIViewController, UITabBarDelegate {
     
     @IBOutlet weak var threadTable: UITableView!
     @IBOutlet weak var deviceBar: UITabBarItem!
+    
     
     var dataManager = DataManager()
     var localThread = [Thread]()
@@ -34,14 +35,28 @@ class PSViewController: UIViewController {
         dataManager.downloadForumJSON(device: Devices(rawValue: deviceBar.tag)!.device ,page: currentPage)
         threadTable.refreshControl = threadRefresh
         threadTable.backgroundColor = .clear
-        view.setGradientBG(colorOne: Colors.darkblue, colorTwo: Colors.blue)
+        bgColor(devicePicked: deviceBar.tag)
         
         }
     
     @objc func refresh(sender: UIRefreshControl){
+        currentPage = 1
         dataManager.downloadForumJSON(device: Devices(rawValue: deviceBar.tag)!.device, page: currentPage)
         sender.endRefreshing()
+        print("Refreshed : Reset back to Page 1")
     }
+    
+    func bgColor(devicePicked: Int){
+        switch devicePicked {
+        case 2:
+            view.setGradientBG(colorOne: Colors.darkred, colorTwo: Colors.red)
+        case 3 :
+            view.setGradientBG(colorOne: Colors.darkgreen, colorTwo: Colors.green)
+        default:
+            view.setGradientBG(colorOne: Colors.darkblue, colorTwo: Colors.blue)
+        }
+    }
+
 }
 
 extension PSViewController: UITableViewDataSource, UITableViewDelegate {
@@ -53,11 +68,6 @@ extension PSViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "threadCell") as! ThreadCell
         cell.threadName.text = localThread[indexPath.row].title
         cell.threadUsername.text = localThread[indexPath.row].username
-        if localThread[indexPath.row].isWatching {
-            cell.onlineStatus.image = Status.online.image
-        } else {
-            cell.onlineStatus.image = Status.offline.image
-        }
         let localPrefix = localThread[indexPath.row].prefixID
         if localPrefix == 1 || localPrefix == 7 {
             cell.prefix.image = Prefix.sell.image
@@ -68,6 +78,14 @@ extension PSViewController: UITableViewDataSource, UITableViewDelegate {
         }
         cell.viewNumber.text = String(localThread[indexPath.row].viewCount)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == localThread.count-1 {
+            currentPage += 1
+            dataManager.downloadForumJSON(device: Devices(rawValue: deviceBar.tag)!.device, page: currentPage)
+            
+            }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -87,7 +105,12 @@ extension PSViewController: UITableViewDataSource, UITableViewDelegate {
 }
 extension PSViewController: ThreadsManagerDelegate {
     func didGetThreadData(dataManager: DataManager, thread: ThreadData) {
-        localThread = thread.threads
+        if currentPage > 1 {
+            localThread.append(contentsOf: thread.threads)
+            print("\(localThread.count) threads in array and currently on Page : \(currentPage)")
+        } else {
+            localThread = thread.threads
+        }
         DispatchQueue.main.async {
             self.threadTable.reloadData()
         }
@@ -97,5 +120,4 @@ extension PSViewController: ThreadsManagerDelegate {
         print(error)
     }
     
-
 }
