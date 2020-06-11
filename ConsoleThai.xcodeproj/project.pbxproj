@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7528BB14249234BA00815C59 /* PhotoViewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7528BB13249234BA00815C59 /* PhotoViewPage.swift */; };
 		752D19B4248C8F2700BA00E4 /* ThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752D19B3248C8F2700BA00E4 /* ThreadViewController.swift */; };
 		752D19B6248D746C00BA00E4 /* AttachmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752D19B5248D746C00BA00E4 /* AttachmentCell.swift */; };
 		7544357B2475916E0076C815 /* ThreadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7544357A2475916E0076C815 /* ThreadData.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7528BB13249234BA00815C59 /* PhotoViewPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewPage.swift; sourceTree = "<group>"; };
 		752D19B3248C8F2700BA00E4 /* ThreadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadViewController.swift; sourceTree = "<group>"; };
 		752D19B5248D746C00BA00E4 /* AttachmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCell.swift; sourceTree = "<group>"; };
 		7544357A2475916E0076C815 /* ThreadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadData.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				752D19B3248C8F2700BA00E4 /* ThreadViewController.swift */,
 				7550B366248A84F90025E3F4 /* ThreadCell.swift */,
 				752D19B5248D746C00BA00E4 /* AttachmentCell.swift */,
+				7528BB13249234BA00815C59 /* PhotoViewPage.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				75901C012474338600D4630A /* DataManager.swift in Sources */,
 				75901BEC2474294900D4630A /* PSViewController.swift in Sources */,
 				752D19B4248C8F2700BA00E4 /* ThreadViewController.swift in Sources */,
+				7528BB14249234BA00815C59 /* PhotoViewPage.swift in Sources */,
 				75901BE82474294900D4630A /* AppDelegate.swift in Sources */,
 				75901BEA2474294900D4630A /* SceneDelegate.swift in Sources */,
 			);

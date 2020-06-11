@@ -19,6 +19,8 @@ class ThreadViewController: UIViewController, PostManagerDelegate {
     var postID:Int?
     var titleOfThread:String?
     var attachments = [Attachments]()
+    var imageData:UIImage?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,8 +55,10 @@ extension ThreadViewController : UICollectionViewDelegate, UICollectionViewDataS
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if attachments.count  == 0 {
-            return 1
+            attachmentCV.isHidden = true
+            return 0
         } else {
+            attachmentCV.isHidden = false
             return attachments.count
         }
     }
@@ -68,7 +72,23 @@ extension ThreadViewController : UICollectionViewDelegate, UICollectionViewDataS
         cell.layer.cornerRadius = 10
         return cell
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       let attachmentID = attachments[indexPath.row].attachmentID
+            dataManager.downloadAttachment(id: attachmentID) { (data) in
+                self.imageData = UIImage(data: data)
+                print(self.imageData!)
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "ShowPhoto", sender: self)
+                }
+            }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? PhotoViewPage {
+            destination.photo = self.imageData
+        }
+    }
 }
 
 

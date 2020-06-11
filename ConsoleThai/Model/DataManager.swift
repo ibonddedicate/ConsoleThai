@@ -24,16 +24,20 @@ class DataManager {
     var threadDelegate: ThreadsManagerDelegate?
     var postDelegate: PostManagerDelegate?
     let apiKey = "D06DPe9piI0syIxUMnleZijaKrphWPNx"
+    let header = "XF-Api-Key"
     
     let urlForum = "https://www.consolethai.com/api/forums/"
     let urlThread =  "https://www.consolethai.com/api/posts/"
+    let urlAttachment = "https://www.consolethai.com/api/attachments/"
+    
+    var dataHolder:Data?
     
     
         func downloadForumJSON(device:String,page: Int){
             let finalUrl = "\(urlForum)\(device)?page=\(page)"
             if let url = URL(string: finalUrl){
                 var request = URLRequest(url: url)
-                request.setValue(apiKey,forHTTPHeaderField: "XF-Api-Key")
+                request.setValue(apiKey,forHTTPHeaderField: header)
                 let session = URLSession(configuration: .default)
                 let task = session.dataTask(with: request) { (data, response, error) in
                     if error != nil {
@@ -57,7 +61,7 @@ class DataManager {
         let finalUrl = "\(urlThread)\(number)"
         if let url = URL(string: finalUrl){
             var request = URLRequest(url: url)
-            request.setValue(apiKey,forHTTPHeaderField: "XF-Api-Key")
+            request.setValue(apiKey,forHTTPHeaderField: header)
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: request) { (data, response, error) in
                 if error != nil {
@@ -72,6 +76,25 @@ class DataManager {
                 } catch {
                     self.postDelegate?.didFail(error: error)
                 }
+            }
+            task.resume()
+        }
+    }
+    
+    func downloadAttachment(id:Int,completionHandler completion: @escaping ((Data)-> Void)) {
+        let finalUrl = "\(urlAttachment)\(id)/data"
+        if let url = URL(string: finalUrl){
+            var request = URLRequest(url: url)
+            request.setValue(apiKey, forHTTPHeaderField: header)
+            let session = URLSession(configuration: .default)
+            let task = session.dataTask(with: request) { (data, response, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                print("Attachment Downloaded")
+                self.dataHolder = data
+                completion(self.dataHolder!)
             }
             task.resume()
         }
