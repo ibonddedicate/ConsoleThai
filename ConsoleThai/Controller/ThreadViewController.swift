@@ -14,6 +14,7 @@ class ThreadViewController: UIViewController, PostManagerDelegate {
     @IBOutlet weak var threadTitle: UILabel!
     @IBOutlet weak var attachmentCV: UICollectionView!
     @IBOutlet weak var postingDate: UILabel!
+    @IBOutlet weak var contactMe: UILabel!
     
     //IBOutlets
     var dataManager = DataManager()
@@ -23,6 +24,7 @@ class ThreadViewController: UIViewController, PostManagerDelegate {
     var dateOfPost:Date?
     var attachments = [Attachments]()
     var imageData:UIImage?
+    var imageArray = [UIImage]()
     
     
     override func viewDidLoad() {
@@ -40,10 +42,12 @@ class ThreadViewController: UIViewController, PostManagerDelegate {
         dateOfPost = Date.init(timeIntervalSince1970: TimeInterval(post.post.postDate))
         if post.post.attachments != nil {
             attachments = post.post.attachments!
-            print("Found \(attachments.count) attachements")
+            print("Found \(attachments.count) attachments")
+            addImageToArray(ids: attachments)
         }
         DispatchQueue.main.async {
             self.postingDate.text = "โพสต์เมื่อ : \(self.dateOfPost?.asString(style: .medium) ?? "ไม่มีข้อมูล")"
+            self.contactMe.text = post.post.thread.customfields.contactField
             self.message.text = post.post.message
             self.threadTitle.text = self.titleOfThread
             self.attachmentCV.reloadData()
@@ -52,6 +56,14 @@ class ThreadViewController: UIViewController, PostManagerDelegate {
     
     func didFail(error: Error) {
         print(error)
+    }
+    
+    func addImageToArray(ids:[Attachments]) {
+        for image in ids {
+            dataManager.downloadAttachment(id: image.attachmentID) { (data) in
+                self.imageArray.append(UIImage(data: data)!)
+            }
+        }
     }
 
 }
@@ -74,23 +86,18 @@ extension ThreadViewController : UICollectionViewDelegate, UICollectionViewDataS
             let thumbURL = URL(string: attachments[indexPath.row].thumbnailUrl)!
             cell.attachmentImage.load(url: thumbURL)
         }
-        cell.layer.cornerRadius = 10
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       let attachmentID = attachments[indexPath.row].attachmentID
-            dataManager.downloadAttachment(id: attachmentID) { (data) in
-                self.imageData = UIImage(data: data)
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "ShowPhoto", sender: self)
                 }
-            }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? PhotoViewPage {
-            destination.photo = self.imageData
+            destination.photoArray = imageArray
         }
     }
 }

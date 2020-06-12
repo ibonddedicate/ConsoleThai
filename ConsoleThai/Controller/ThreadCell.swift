@@ -11,7 +11,6 @@ import UIKit
 class ThreadCell: UITableViewCell {
     @IBOutlet weak var threadName: UILabel!
     @IBOutlet weak var threadUsername: UILabel!
-    @IBOutlet weak var onlineStatus: UIImageView!
     @IBOutlet weak var prefix: UIImageView!
     @IBOutlet weak var viewNumber: UILabel!
     

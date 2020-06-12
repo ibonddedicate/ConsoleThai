@@ -19,7 +19,6 @@ struct Thread: Codable {
     let userID: Int
     let viewCount: Int
     let firstPostID: Int
-    
 
     enum CodingKeys: String, CodingKey {
         case title
@@ -31,6 +30,7 @@ struct Thread: Codable {
     }
 }
 
+
 struct PostData: Codable {
     let post : PostInfo
 }
@@ -38,13 +38,32 @@ struct PostInfo: Codable {
     let attachments: [Attachments]?
     let message : String
     let postDate : Int
+    let thread : ThreadInPost
     
     enum CodingKeys: String, CodingKey {
         case attachments = "Attachments"
         case message
         case postDate = "post_date"
+        case thread = "Thread"
     }
 }
+
+struct ThreadInPost : Codable {
+    let customfields : CustomField
+    
+    enum CodingKeys: String, CodingKey {
+        case customfields = "custom_fields"
+    }
+}
+
+struct CustomField: Codable {
+    let contactField: String
+    
+    enum CodingKeys: String, CodingKey {
+        case contactField = "contact_field_thread"
+    }
+}
+
 struct Attachments: Codable {
     let attachmentID:Int
     let thumbnailUrl:String
