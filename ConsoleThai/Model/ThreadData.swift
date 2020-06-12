@@ -37,10 +37,12 @@ struct PostData: Codable {
 struct PostInfo: Codable {
     let attachments: [Attachments]?
     let message : String
+    let postDate : Int
     
     enum CodingKeys: String, CodingKey {
         case attachments = "Attachments"
         case message
+        case postDate = "post_date"
     }
 }
 struct Attachments: Codable {

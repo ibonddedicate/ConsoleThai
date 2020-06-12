@@ -13,11 +13,14 @@ class ThreadViewController: UIViewController, PostManagerDelegate {
     @IBOutlet weak var message: UILabel!
     @IBOutlet weak var threadTitle: UILabel!
     @IBOutlet weak var attachmentCV: UICollectionView!
+    @IBOutlet weak var postingDate: UILabel!
+    
     //IBOutlets
     var dataManager = DataManager()
     var localPost: PostInfo?
     var postID:Int?
     var titleOfThread:String?
+    var dateOfPost:Date?
     var attachments = [Attachments]()
     var imageData:UIImage?
     
@@ -34,11 +37,13 @@ class ThreadViewController: UIViewController, PostManagerDelegate {
     }
     
     func didGetPostData(dataManager: DataManager, post: PostData) {
+        dateOfPost = Date.init(timeIntervalSince1970: TimeInterval(post.post.postDate))
         if post.post.attachments != nil {
             attachments = post.post.attachments!
-            print(attachments.count)
+            print("Found \(attachments.count) attachements")
         }
         DispatchQueue.main.async {
+            self.postingDate.text = "โพสต์เมื่อ : \(self.dateOfPost?.asString(style: .medium) ?? "ไม่มีข้อมูล")"
             self.message.text = post.post.message
             self.threadTitle.text = self.titleOfThread
             self.attachmentCV.reloadData()
@@ -77,7 +82,6 @@ extension ThreadViewController : UICollectionViewDelegate, UICollectionViewDataS
        let attachmentID = attachments[indexPath.row].attachmentID
             dataManager.downloadAttachment(id: attachmentID) { (data) in
                 self.imageData = UIImage(data: data)
-                print(self.imageData!)
                 DispatchQueue.main.async {
                     self.performSegue(withIdentifier: "ShowPhoto", sender: self)
                 }
@@ -105,4 +109,12 @@ extension UIImageView {
             }
         }
     }
+}
+
+extension Date {
+  func asString(style: DateFormatter.Style) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = style
+    return dateFormatter.string(from: self)
+  }
 }
