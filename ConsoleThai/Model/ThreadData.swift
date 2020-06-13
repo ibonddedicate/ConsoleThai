@@ -58,9 +58,11 @@ struct ThreadInPost : Codable {
 
 struct CustomField: Codable {
     let contactField: String
+    let conditionField: String
     
     enum CodingKeys: String, CodingKey {
         case contactField = "contact_field_thread"
+        case conditionField = "condition_field"
     }
 }
 

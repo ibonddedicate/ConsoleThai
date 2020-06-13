@@ -300,13 +300,13 @@
                                 <rect key="frame" x="10" y="20" width="355" height="694"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="หัวข้อกระทู้" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCu-hE-TjR">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="32.333333333333336"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="26.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lDB-mw-FYj">
-                                        <rect key="frame" x="0.0" y="44.333333333333329" width="355" height="127.99999999999999"/>
+                                        <rect key="frame" x="0.0" y="38.333333333333343" width="355" height="128"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="128" id="k9G-QM-yaB"/>
@@ -342,26 +342,42 @@
                                             <outlet property="delegate" destination="yQ6-kz-lhr" id="HAR-nB-ocf"/>
                                         </connections>
                                     </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="วันที่โพสต์" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V14-iO-Gir">
-                                        <rect key="frame" x="0.0" y="184.33333333333334" width="355" height="14.333333333333343"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mAW-8Z-ZsK">
+                                        <rect key="frame" x="0.0" y="178.33333333333334" width="355" height="16"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="วันที่โพสต์" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V14-iO-Gir">
+                                                <rect key="frame" x="0.0" y="0.0" width="275" height="16"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="r1" translatesAutoresizingMaskIntoConstraints="NO" id="WtQ-Mb-KvW">
+                                                <rect key="frame" x="275" y="0.0" width="80" height="16"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="16" id="XZ4-Zk-JGg"/>
+                                                    <constraint firstAttribute="width" constant="80" id="vKi-bX-X65"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="WtQ-Mb-KvW" firstAttribute="top" secondItem="mAW-8Z-ZsK" secondAttribute="top" id="42x-hq-1O1"/>
+                                            <constraint firstAttribute="trailing" secondItem="WtQ-Mb-KvW" secondAttribute="trailing" id="bHg-RV-Wfs"/>
+                                        </constraints>
+                                    </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ช่องทางการติดต่อ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hx3-pt-Pwn" userLabel="Contact">
-                                        <rect key="frame" x="0.0" y="210.66666666666666" width="355" height="14.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="206.33333333333334" width="355" height="14.333333333333343"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7LK-Zs-uL6">
-                                        <rect key="frame" x="0.0" y="237" width="355" height="457"/>
+                                        <rect key="frame" x="0.0" y="232.66666666666666" width="355" height="461.33333333333337"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cwG-Vq-xwf">
                                                 <rect key="frame" x="0.0" y="0.0" width="355" height="28.333333333333332"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="กำลังโหลด.." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lth-hH-tC4">
-                                                        <rect key="frame" x="8" y="7.9999999999999982" width="339" height="20.333333333333329"/>
+                                                        <rect key="frame" x="8" y="8.0000000000000266" width="339" height="20.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -411,13 +427,14 @@
                         <outlet property="contactMe" destination="hx3-pt-Pwn" id="b5b-7d-B1k"/>
                         <outlet property="message" destination="Lth-hH-tC4" id="Pol-X6-AzJ"/>
                         <outlet property="postingDate" destination="V14-iO-Gir" id="ebO-DP-lje"/>
+                        <outlet property="rankingMeter" destination="WtQ-Mb-KvW" id="l0U-Ia-6em"/>
                         <outlet property="threadTitle" destination="gCu-hE-TjR" id="yWd-gJ-Ith"/>
                         <segue destination="5pm-Ga-Rbd" kind="show" identifier="ShowPhoto" id="Jiv-KL-EZB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bfz-er-IoO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2669.5652173913045" y="304.6875"/>
+            <point key="canvasLocation" x="2668" y="304.43349753694582"/>
         </scene>
         <!--XboxOne-->
         <scene sceneID="pJZ-Yj-rf6">
@@ -622,10 +639,15 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vld-6I-AEB">
-                                <rect key="frame" x="163.66666666666666" y="657" width="48" height="39"/>
+                                <rect key="frame" x="107.66666666666669" y="657" width="160" height="39"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="PBX-SO-I1o"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="hpt-gu-hm8"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="X ปิด">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="ปิด">
+                                    <color key="titleColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 </state>
                                 <connections>
                                     <action selector="dismissPhoto:" destination="5pm-Ga-Rbd" eventType="touchUpInside" id="7xU-eY-1iH"/>
@@ -645,6 +667,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="XXz-Sk-SVy"/>
                     <connections>
+                        <outlet property="dismissButton" destination="vld-6I-AEB" id="fpC-Iy-eam"/>
                         <outlet property="photoCV" destination="Tyo-Pt-29L" id="n1Z-vF-Net"/>
                     </connections>
                 </viewController>
@@ -660,6 +683,7 @@
         <image name="nopic" width="50" height="50"/>
         <image name="ns" width="33.333332061767578" height="33.333332061767578"/>
         <image name="ps" width="30" height="30"/>
+        <image name="r1" width="666.66668701171875" height="137"/>
         <image name="sell" width="33.333332061767578" height="33.333332061767578"/>
         <image name="view" width="8" height="8"/>
         <image name="xb" width="30" height="30"/>

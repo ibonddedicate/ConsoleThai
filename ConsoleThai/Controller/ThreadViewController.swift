@@ -15,6 +15,7 @@ class ThreadViewController: UIViewController, PostManagerDelegate {
     @IBOutlet weak var attachmentCV: UICollectionView!
     @IBOutlet weak var postingDate: UILabel!
     @IBOutlet weak var contactMe: UILabel!
+    @IBOutlet weak var rankingMeter: UIImageView!
     
     //IBOutlets
     var dataManager = DataManager()
@@ -47,6 +48,7 @@ class ThreadViewController: UIViewController, PostManagerDelegate {
         }
         DispatchQueue.main.async {
             self.postingDate.text = "โพสต์เมื่อ : \(self.dateOfPost?.asString(style: .medium) ?? "ไม่มีข้อมูล")"
+            self.rankingMeter.image = UIImage(named:"r\(post.post.thread.customfields.conditionField).png")
             self.contactMe.text = post.post.thread.customfields.contactField
             self.message.text = post.post.message
             self.threadTitle.text = self.titleOfThread

@@ -12,6 +12,7 @@ class PhotoViewPage: UIViewController {
 
     
     @IBOutlet weak var photoCV: UICollectionView!
+    @IBOutlet weak var dismissButton: UIButton!
     
     var photo:UIImage!
     var photoArray = [UIImage]()
@@ -20,6 +21,7 @@ class PhotoViewPage: UIViewController {
         super.viewDidLoad()
         photoCV.delegate = self
         photoCV.dataSource = self
+        dismissButton.layer.cornerRadius = dismissButton.layer.bounds.size.height/2
         // Do any additional setup after loading the view.
     }
     
