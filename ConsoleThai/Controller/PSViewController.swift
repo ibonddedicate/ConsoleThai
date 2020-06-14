@@ -55,11 +55,10 @@ class PSViewController: UIViewController, UITabBarDelegate {
         currentPage = 1
         switch categoryPicker.selectedSegmentIndex {
         case 0 :
-            dataManager.downloadForumJSON(device: Devices(rawValue: deviceBar.tag)!.device ,page: currentPage)
+            dataManager.downloadForumJSON(device: Devices(rawValue: deviceBar.tag)!.device ,page: 1)
         case 1 :
-            
             let num = deviceBar.tag + 1
-            dataManager.downloadForumJSON(device: Devices(rawValue: num)!.device ,page: currentPage)
+            dataManager.downloadForumJSON(device: Devices(rawValue: num)!.device ,page: 1)
         default :
             break
         }
