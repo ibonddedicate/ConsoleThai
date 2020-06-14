@@ -48,8 +48,8 @@ class ThreadViewController: UIViewController, PostManagerDelegate {
         }
         DispatchQueue.main.async {
             self.postingDate.text = "โพสต์เมื่อ : \(self.dateOfPost?.asString(style: .medium) ?? "ไม่มีข้อมูล")"
-            self.rankingMeter.image = UIImage(named:"r\(post.post.thread.customfields.conditionField).png")
-            self.contactMe.text = post.post.thread.customfields.contactField
+            self.rankingMeter.image = UIImage(named:"r\(post.post.thread?.customfields.conditionField ?? "1").png")
+            self.contactMe.text = String(post.post.thread?.customfields.contactField ?? "ไม่มีข้อมูล")
             self.message.text = post.post.message
             self.threadTitle.text = self.titleOfThread
             self.attachmentCV.reloadData()

@@ -38,7 +38,7 @@ struct PostInfo: Codable {
     let attachments: [Attachments]?
     let message : String
     let postDate : Int
-    let thread : ThreadInPost
+    let thread : ThreadInPost?
     
     enum CodingKeys: String, CodingKey {
         case attachments = "Attachments"

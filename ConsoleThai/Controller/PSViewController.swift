@@ -12,6 +12,7 @@ class PSViewController: UIViewController, UITabBarDelegate {
     
     @IBOutlet weak var threadTable: UITableView!
     @IBOutlet weak var deviceBar: UITabBarItem!
+    @IBOutlet weak var categoryPicker: UISegmentedControl!
     
     
     var dataManager = DataManager()
@@ -36,21 +37,47 @@ class PSViewController: UIViewController, UITabBarDelegate {
         threadTable.refreshControl = threadRefresh
         threadTable.backgroundColor = .clear
         bgColor(devicePicked: deviceBar.tag)
-        
         }
     
     @objc func refresh(sender: UIRefreshControl){
         currentPage = 1
-        dataManager.downloadForumJSON(device: Devices(rawValue: deviceBar.tag)!.device, page: currentPage)
+        if categoryPicker.selectedSegmentIndex == 0 {
+            dataManager.downloadForumJSON(device: Devices(rawValue: deviceBar.tag)!.device, page: currentPage)
+        } else {
+            let num = deviceBar.tag + 1
+            dataManager.downloadForumJSON(device: Devices(rawValue: num)!.device, page: currentPage)
+        }
         sender.endRefreshing()
         print("Refreshed : Reset back to Page 1")
     }
     
+    @IBAction func categoryChanged(_ sender: Any) {
+        currentPage = 1
+        switch categoryPicker.selectedSegmentIndex {
+        case 0 :
+            dataManager.downloadForumJSON(device: Devices(rawValue: deviceBar.tag)!.device ,page: currentPage)
+        case 1 :
+            
+            let num = deviceBar.tag + 1
+            dataManager.downloadForumJSON(device: Devices(rawValue: num)!.device ,page: currentPage)
+        default :
+            break
+        }
+        threadTable.reloadData()
+        print("switched")
+    }
+    
+//    func pickedForum()->Int {
+//        let num = Devices(rawValue: deviceBar.tag)!.device
+//        return num
+//    }
+    
+    
     func bgColor(devicePicked: Int){
         switch devicePicked {
-        case 2:
+        case 3:
             view.setGradientBG(colorOne: Colors.darkred, colorTwo: Colors.red)
-        case 3 :
+        case 5 :
             view.setGradientBG(colorOne: Colors.darkgreen, colorTwo: Colors.green)
         default:
             view.setGradientBG(colorOne: Colors.darkblue, colorTwo: Colors.blue)
@@ -83,10 +110,15 @@ extension PSViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == localThread.count-1 {
             currentPage += 1
-            dataManager.downloadForumJSON(device: Devices(rawValue: deviceBar.tag)!.device, page: currentPage)
-            
+            if categoryPicker.selectedSegmentIndex == 0 {
+                dataManager.downloadForumJSON(device: Devices(rawValue: deviceBar.tag)!.device, page: currentPage)
+            } else {
+                let num = deviceBar.tag + 1
+                dataManager.downloadForumJSON(device: Devices(rawValue: num)!.device, page: currentPage)
             }
+        }
     }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         postIDPressed = localThread[indexPath.row].firstPostID
